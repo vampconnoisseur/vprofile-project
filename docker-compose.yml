@@ -5,8 +5,10 @@ services:
       context: ./Docker-files/db
     image: vampconnoisseur/vprofiledb
     container_name: vprodb
-    ports: -"3306:3306"
-    volumes: -vprodbdata:/var/lib/mqsql
+    ports:
+      - "3306:3306"
+    volumes:
+      - vprodbdata:/var/lib/mqsql
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
 
@@ -28,8 +30,10 @@ services:
       context: ./Docker-files/app
     image: vampconnoisseur/vprofileapp
     container_name: vproapp
-    ports: -"8080:8080"
-    volumes: -vproappdata:/usr/local/tomcat/webapps
+    ports:
+      - "8080:8080"
+    volumes:
+      - vproappdata:/usr/local/tomcat/webapps
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
 
@@ -38,7 +42,8 @@ services:
       context: ./Docker-files/web
     image: vampconnoisseur/vprofileweb
     container_name: vproweb
-    ports: -"80:80"
+    ports:
+      - "80:80"
 
 volumes:
   vprodbdata: {}
